@@ -135,13 +135,11 @@ toolbar.setOnLoad(async () => {
 })
 
 // Toolbar lock toggle
-let locked = false
 toolbar.setOnLockToggle((isLocked) => {
-  locked = isLocked
-  controller.setLocked(locked)
-  if (locked) {
+  controller.setLocked(isLocked)
+  if (isLocked) {
     store.deselect()
     panel.hide()
-    controller.render()
   }
+  controller.render()
 })
