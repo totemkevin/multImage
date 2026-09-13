@@ -112,7 +112,11 @@ class CanvasController {
         return
       }
       if (e.button === 0) {
-        if (this._locked) return
+        if (this._locked) {
+          this._dragState = { type: 'pan', sx: x, sy: y, vx: this._viewport.x, vy: this._viewport.y }
+          this._startWindowDrag(c)
+          return
+        }
         const hit = this._hitTest(x, y)
         if (hit) {
           this._store.select(hit.id)
