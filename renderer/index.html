@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; img-src 'self' file: data:; script-src 'self'">
+  <title>Multi-Image Canvas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toolbar">
+    <button id="btn-import">匯入圖片</button>
+    <button id="btn-load-workspace">開啟工作區</button>
+    <button id="btn-save-workspace">儲存工作區</button>
+  </div>
+  <div id="main">
+    <div id="canvas-container">
+      <canvas id="canvas"></canvas>
+      <div id="drop-overlay">拖曳圖片或資料夾到這裡</div>
+    </div>
+    <div id="side-panel">
+      <h3>屬性</h3>
+      <p id="panel-hint">點選圖片以查看屬性</p>
+      <div id="panel-content">
+        <div class="info-row">
+          <span class="info-label">檔名</span>
+          <span class="info-value" id="info-name">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">原始尺寸</span>
+          <span class="info-value" id="info-size">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Scale</span>
+          <span class="info-value" id="info-scale">—</span>
+        </div>
+        <button class="panel-btn" id="btn-scale-up">放大 ＋</button>
+        <button class="panel-btn" id="btn-scale-down">縮小 －</button>
+        <button class="panel-btn danger" id="btn-delete">刪除 ✕</button>
+      </div>
+    </div>
+  </div>
+  <script src="image-store.js"></script>
+  <script src="layout.js"></script>
+  <script src="workspace.js"></script>
+  <script src="canvas.js"></script>
+  <script src="side-panel.js"></script>
+  <script src="toolbar.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
