@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Image Canvas</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #eee;
+      line-height: 1.6;
+    }
+    header {
+      background: #12121f;
+      border-bottom: 1px solid #333;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    header h1 { font-size: 22px; color: #4aaeff; }
+    header p { font-size: 14px; color: #888; }
+    .hero {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 32px;
+      text-align: center;
+    }
+    .hero h2 { font-size: 36px; margin-bottom: 16px; }
+    .hero p { font-size: 16px; color: #aaa; max-width: 560px; margin: 0 auto 40px; }
+    .btn {
+      display: inline-block;
+      background: #4aaeff;
+      color: #0f0f1a;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .btn:hover { background: #6bbfff; }
+    .features {
+      max-width: 800px;
+      margin: 0 auto 80px;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .feature {
+      background: #12121f;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .feature h3 { font-size: 15px; margin-bottom: 8px; color: #4aaeff; }
+    .feature p { font-size: 13px; color: #888; }
+    footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid #222;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>🖼 Multi-Image Canvas</h1>
+      <p>多圖片畫布展示器</p>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h2>在一個畫布上展示所有圖片</h2>
+    <p>支援滑鼠滾輪縮放、自由拖曳、圖片縮放刪除與工作區儲存，適合設計師、攝影師與創作者。</p>
+    <a class="btn" href="https://github.com/kevin-hu/multi-image/releases/latest">⬇ 下載最新版本</a>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <h3>🔍 畫布 Zoom</h3>
+      <p>滑鼠滾輪縮放整個畫布，以游標為中心點縮放，範圍 0.05× 到 10×。</p>
+    </div>
+    <div class="feature">
+      <h3>🖱 自由拖曳</h3>
+      <p>匯入後自動網格排列，之後可任意拖曳圖片到畫布上的任何位置。</p>
+    </div>
+    <div class="feature">
+      <h3>📐 個別縮放</h3>
+      <p>點選單張圖片，在側邊面板放大（×1.2）或縮小（÷1.2），最大 10×。</p>
+    </div>
+    <div class="feature">
+      <h3>🔒 工作區鎖定</h3>
+      <p>一鍵鎖定，防止誤觸移動圖片，鎖定時仍可平移和縮放畫布。</p>
+    </div>
+    <div class="feature">
+      <h3>💾 工作區儲存</h3>
+      <p>儲存為 .mwp 檔案，保留所有圖片位置與縮放狀態，下次直接載入繼續。</p>
+    </div>
+    <div class="feature">
+      <h3>📁 批量匯入</h3>
+      <p>支援檔案對話框選取或拖放資料夾，一次匯入多張圖片自動排列。</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Multi-Image Canvas · MIT License · <a href="https://github.com/kevin-hu/multi-image" style="color:#4aaeff">GitHub</a></p>
+  </footer>
+</body>
+</html>
