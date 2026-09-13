@@ -75,7 +75,7 @@ class CanvasController {
 
   _hitTest(mx, my) {
     const vp = this._viewport
-    const items = this._store.getAll().reverse()
+    const items = this._store.getAll().slice().reverse()
     for (const item of items) {
       const sx = item.x * vp.zoom + vp.x
       const sy = item.y * vp.zoom + vp.y
