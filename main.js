@@ -30,6 +30,7 @@ ipcMain.handle('open-images', async () => {
 })
 
 ipcMain.handle('resolve-image-paths', async (event, paths) => {
+  if (!Array.isArray(paths)) return []
   const results = []
   for (const p of paths) {
     try {
@@ -56,8 +57,13 @@ ipcMain.handle('save-workspace', async (event, data) => {
     filters: [{ name: 'Workspace', extensions: ['mwp'] }]
   })
   if (!result.canceled) {
-    fs.writeFileSync(result.filePath, JSON.stringify(data, null, 2), 'utf8')
-    return true
+    try {
+      fs.writeFileSync(result.filePath, JSON.stringify(data, null, 2), 'utf8')
+      return true
+    } catch (e) {
+      console.error('save-workspace failed:', e)
+      return false
+    }
   }
   return false
 })
@@ -68,7 +74,12 @@ ipcMain.handle('load-workspace', async () => {
     filters: [{ name: 'Workspace', extensions: ['mwp'] }]
   })
   if (!result.canceled) {
-    return JSON.parse(fs.readFileSync(result.filePaths[0], 'utf8'))
+    try {
+      return JSON.parse(fs.readFileSync(result.filePaths[0], 'utf8'))
+    } catch (e) {
+      console.error('load-workspace failed:', e)
+      return null
+    }
   }
   return null
 })
