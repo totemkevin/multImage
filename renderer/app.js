@@ -77,6 +77,7 @@ controller.setOnSelect((item) => {
 
 // Panel scale up
 panel.setOnScaleUp((id) => {
+  if (locked) return
   const item = store.getAll().find(i => i.id === id)
   if (!item) return
   const newScale = Math.min(10, item.scale * 1.2)
@@ -87,6 +88,7 @@ panel.setOnScaleUp((id) => {
 
 // Panel scale down
 panel.setOnScaleDown((id) => {
+  if (locked) return
   const item = store.getAll().find(i => i.id === id)
   if (!item) return
   const newScale = Math.max(0.05, item.scale / 1.2)
@@ -97,6 +99,7 @@ panel.setOnScaleDown((id) => {
 
 // Panel delete
 panel.setOnDelete((id) => {
+  if (locked) return
   store.remove(id)
   panel.hide()
   controller.render()
@@ -135,11 +138,9 @@ toolbar.setOnLoad(async () => {
 })
 
 // Toolbar lock toggle
+let locked = false
 toolbar.setOnLockToggle((isLocked) => {
+  locked = isLocked
   controller.setLocked(isLocked)
-  if (isLocked) {
-    store.deselect()
-    panel.hide()
-  }
   controller.render()
 })
