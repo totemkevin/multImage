@@ -78,7 +78,7 @@ controller.setOnSelect((item) => {
 panel.setOnScaleUp((id) => {
   const item = store.getAll().find(i => i.id === id)
   if (!item) return
-  const newScale = Math.min(20, item.scale * 1.2)
+  const newScale = Math.min(10, item.scale * 1.2)
   store.update(id, { scale: newScale })
   panel.updateScale(newScale)
   controller.render()

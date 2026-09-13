@@ -105,6 +105,7 @@ class CanvasController {
       const { x, y } = this._getPos(e)
       if (e.button === 1) {
         this._dragState = { type: 'pan', sx: x, sy: y, vx: this._viewport.x, vy: this._viewport.y }
+        this._startWindowDrag(c)
         return
       }
       if (e.button === 0) {
@@ -118,11 +119,14 @@ class CanvasController {
           if (this._onSelect) this._onSelect(null)
           this._dragState = { type: 'pan', sx: x, sy: y, vx: this._viewport.x, vy: this._viewport.y }
         }
+        this._startWindowDrag(c)
         this.render()
       }
     })
+  }
 
-    c.addEventListener('mousemove', (e) => {
+  _startWindowDrag(c) {
+    const onMove = (e) => {
       if (!this._dragState) return
       const { x, y } = this._getPos(e)
       const dx = x - this._dragState.sx
@@ -138,10 +142,14 @@ class CanvasController {
         })
       }
       this.render()
-    })
-
-    const stop = () => { this._dragState = null; c.classList.remove('grabbing') }
-    c.addEventListener('mouseup', stop)
-    c.addEventListener('mouseleave', stop)
+    }
+    const onUp = () => {
+      this._dragState = null
+      c.classList.remove('grabbing')
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseup', onUp)
+    }
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
   }
 }
