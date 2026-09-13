@@ -64,6 +64,7 @@ const toolbar = new Toolbar({
   btnImport: document.getElementById('btn-import'),
   btnLoad: document.getElementById('btn-load-workspace'),
   btnSave: document.getElementById('btn-save-workspace'),
+  btnLock: document.getElementById('btn-lock'),
   dropOverlay: document.getElementById('drop-overlay'),
   canvasContainer: document.getElementById('canvas-container')
 })

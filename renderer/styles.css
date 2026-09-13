@@ -106,3 +106,4 @@ body {
   color: white;
   border-color: #e94560;
 }
+#btn-lock.active:hover { background: #c73050; }
