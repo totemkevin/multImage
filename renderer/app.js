@@ -142,9 +142,13 @@ let locked = false
 toolbar.setOnLockToggle((isLocked) => {
   locked = isLocked
   controller.setLocked(isLocked)
+  const sidePanel = document.getElementById('side-panel')
   if (isLocked) {
     store.deselect()
     panel.hide()
+    sidePanel.style.display = 'none'
+  } else {
+    sidePanel.style.display = ''
   }
   controller.render()
 })
