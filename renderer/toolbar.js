@@ -4,6 +4,7 @@ class Toolbar {
     this._onImport = null
     this._onLoad = null
     this._onSave = null
+    this._onLockToggle = null
 
     els.btnImport.addEventListener('click', async () => {
       const paths = await window.electronAPI.openImages()
@@ -41,4 +42,14 @@ class Toolbar {
   setOnImport(cb) { this._onImport = cb }
   setOnLoad(cb) { this._onLoad = cb }
   setOnSave(cb) { this._onSave = cb }
+
+  setOnLockToggle(cb) {
+    this._onLockToggle = cb
+    const btn = document.getElementById('btn-lock')
+    btn.addEventListener('click', () => {
+      const locked = btn.classList.toggle('active')
+      btn.textContent = locked ? '🔓 解鎖' : '🔒 鎖定'
+      if (this._onLockToggle) this._onLockToggle(locked)
+    })
+  }
 }

@@ -100,3 +100,9 @@ body {
 .panel-btn:hover { background: #3a3a5e; }
 .panel-btn.danger { border-color: #e94560; color: #e94560; }
 .panel-btn.danger:hover { background: #2a1520; }
+
+#btn-lock.active {
+  background: #e94560;
+  color: white;
+  border-color: #e94560;
+}
