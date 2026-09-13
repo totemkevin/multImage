@@ -6,6 +6,7 @@ class CanvasController {
     this._viewport = { x: 0, y: 0, zoom: 1.0 }
     this._dragState = null
     this._onSelect = null
+    this._locked = false
 
     this._setupResize()
     this._bindEvents()
@@ -14,6 +15,8 @@ class CanvasController {
   get viewport() { return this._viewport }
 
   setOnSelect(callback) { this._onSelect = callback }
+
+  setLocked(bool) { this._locked = bool }
 
   loadViewport(vp) {
     this._viewport.x = vp.x
@@ -109,6 +112,13 @@ class CanvasController {
         return
       }
       if (e.button === 0) {
+        if (this._locked) {
+          const hit = this._hitTest(x, y)
+          if (hit) return
+          this._dragState = { type: 'pan', sx: x, sy: y, vx: this._viewport.x, vy: this._viewport.y }
+          this._startWindowDrag(c)
+          return
+        }
         const hit = this._hitTest(x, y)
         if (hit) {
           this._store.select(hit.id)
